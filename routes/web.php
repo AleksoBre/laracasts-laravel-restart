@@ -15,7 +15,10 @@ Route::get('/contact', function () {
 });
 
 
-
+Route::get('/projects', function () {
+    $projects = ['Budgeting app', 'Photo gallery', 'Blog'];
+    return view('projects', ['projects' => $projects]);
+});
 
 
 
