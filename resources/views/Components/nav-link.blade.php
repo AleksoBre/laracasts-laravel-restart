@@ -1,1 +1,1 @@
-<a {{ $attributes }}>{{ $slot }}</a>
+<a {{ $attributes }} class="rounded-md bg-gray-950/50 px-3 py-2 text-sm font-medium text-white">{{ $slot }}</a>
