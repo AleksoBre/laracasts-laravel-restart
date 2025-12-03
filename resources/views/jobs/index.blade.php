@@ -1,3 +1,5 @@
+{{-- fajl je bio nazvan jobs.blade.php, ali posto se sada nalazi u folderu jobs, los uri bi bio jobs/jobs, pa smo ga nazvali index.blade.php --}}
+
 <x-layout>
     <x-slot:heading>Jobs</x-slot:heading>
 
