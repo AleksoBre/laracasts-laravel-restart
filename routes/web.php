@@ -26,7 +26,10 @@ Route::get('/jobs/{id}', function($id) { //bilo sta sa wildcard-om stavljam pri 
 });
 
 Route::post('/jobs', function () {
-    //validation
+    request()->validate([
+        'job_title' => ['required', 'min:3'], 
+        'job_salary' => ['required']
+    ]);
     $request = request()->all();
     Job::create([
         'employer_id' => $request['job_employer'],
