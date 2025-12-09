@@ -23,8 +23,7 @@ Route::get('/jobs/create', function() {
 });
 
 // Show
-Route::get('/jobs/{id}', function($id) { //bilo sta sa wildcard-om stavljam pri dnu routes fajla, jer ako stavim pri vrhu, onda bilo sta posle /jobs/ ce biti ukljuceno u ovu funkciju
-    $job = Job::find($id);
+Route::get('/jobs/{job}', function(Job $job) {
     return view('jobs.show', ['job' => $job]);
 });
 
@@ -45,12 +44,12 @@ Route::post('/jobs', function () {
 });
 
 // Edit
-Route::get('/jobs/{id}/edit', function($id) {
-    return view('jobs.edit', ['job' => Job::findOrFail($id)]);
+Route::get('/jobs/{job}/edit', function(Job $job) {
+    return view('jobs.edit', ['job' => $job]);
 });
 
 // Update
-Route::patch('/jobs/{id}', function($id) {
+Route::patch('/jobs/{job}', function(Job $job) {
     // authorize (On hold...)
 
     //validacija
@@ -60,20 +59,20 @@ Route::patch('/jobs/{id}', function($id) {
     ]);
 
     //menjamo podatke u bazi
-    Job::findOrFail($id)->update([
+    $job->update([
         'title' => request('job_title'),
         'salary' => request('job_salary')
     ]);
 
     //redirect
-    return redirect('jobs/' . $id);
+    return redirect('jobs/' . $job->id);
 });
 
 // Destroy
-Route::delete('/jobs/{id}', function($id) {
+Route::delete('/jobs/{job}', function(Job $job) {
     // authorize (On hold...)
 
-    Job::findOrFail($id)->delete();
+    $job->delete();
 
     return redirect('/jobs');
 });
